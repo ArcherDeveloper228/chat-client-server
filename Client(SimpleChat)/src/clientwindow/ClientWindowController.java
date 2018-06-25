@@ -1,5 +1,6 @@
 package clientwindow;
 
+import client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -11,6 +12,9 @@ import javafx.scene.control.TextField;
  * @version 1.0
  * */
 public class ClientWindowController {
+
+    /** Property - client */
+    private Client client;
 
     @FXML
     private TextArea text_area;
@@ -38,6 +42,26 @@ public class ClientWindowController {
 
         });
 
+
+    }
+
+    /**
+     * This method return value of the property client
+     * @return value of the property client
+     * */
+    public Client getClient() {
+
+        return this.client;
+
+    }
+
+    /**
+     * This method set value of the property client
+     * @param client value of the object Client
+     * */
+    public void setClient(Client client) {
+
+        this.client = client;
 
     }
 

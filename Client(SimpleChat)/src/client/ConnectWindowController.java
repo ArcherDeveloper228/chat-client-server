@@ -31,6 +31,27 @@ public class ConnectWindowController implements ConnectWindowInterface {
     @FXML
     private void initialize() {
 
+        // make event for text field "Name"
+        this.textName.textProperty().addListener( (ov, oldV, newV) -> {
+
+            if (newV.trim().length() > 20) this.textName.setText(oldV);
+
+        });
+
+        // make event for text field "Ip"
+        this.textIp.textProperty().addListener( (ov, oldV, newV) -> {
+
+            if (newV.trim().length() > 15) this.textIp.setText(oldV);
+
+        });
+
+        // make event for text field "Port"
+        this.textPort.textProperty().addListener( (ov, oldV, newV) -> {
+
+            if (newV.trim().length() > 5) this.textPort.setText(oldV);
+
+        });
+
         // make event for button "Connect"
         this.buttonConnect.setOnAction(event -> {
 
