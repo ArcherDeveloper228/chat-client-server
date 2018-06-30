@@ -31,14 +31,16 @@ public class ClientWindowController {
     @FXML
     private void initialize() {
 
+        // block text area
+        this.text_area.setEditable(false);
+
         // set event for button "Exit"
         this.button_exit.setOnAction(event -> this.button_exit.getScene().getWindow().hide());
 
         // set event for button "Send"
         this.button_send.setOnAction(event -> {
 
-
-
+            this.text_area.setText("You: " + this.text_field.getText().trim());
 
         });
 

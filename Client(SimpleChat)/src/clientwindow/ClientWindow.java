@@ -13,19 +13,13 @@ import java.io.IOException;
  * @author Nikita.Ustyushenko
  * @version 1.0
  * */
-public class ClientWindow extends Stage {
-
-    /** Final property - TITLE_WINDOW */
-    private final String TITLE_WINDOW;
+public class ClientWindow extends Stage implements ClientWindowInterface {
 
     /** Property - client */
     private Client client;
 
     /** Property - anchor_pane */
     private AnchorPane anchorPane;
-
-    // block for initialize final property
-    { this.TITLE_WINDOW = new String("Chat"); }
 
     /**
      * Make client window
