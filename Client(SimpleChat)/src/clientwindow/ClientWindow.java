@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  * This class make client window
@@ -15,8 +16,8 @@ import java.io.IOException;
  * */
 public class ClientWindow extends Stage implements ClientWindowInterface {
 
-    /** Property - client */
-    private Client client;
+    /** Property - clientWindowController */
+    private ClientWindowController clientWindowController;
 
     /** Property - anchor_pane */
     private AnchorPane anchorPane;
@@ -26,7 +27,7 @@ public class ClientWindow extends Stage implements ClientWindowInterface {
      * */
     public ClientWindow() {
 
-        this.client = null;
+        this.clientWindowController = null;
         this.anchorPane = null;
 
     }
@@ -35,11 +36,17 @@ public class ClientWindow extends Stage implements ClientWindowInterface {
      * Make client window
      * @param client value of the object Client
      * */
-    public ClientWindow(Client client) {
+    public ClientWindow(Client client, Socket socket) {
 
         try {
 
-            this.anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource("ClientWindowFXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(ClientWindow.class.getResource("ClientWindowFXML.fxml"));
+
+            this.anchorPane = (AnchorPane) loader.load();
+
+            this.clientWindowController = loader.<ClientWindowController>getController();
+            this.clientWindowController.setClient(client);
+            this.clientWindowController.setSocket(socket);
 
             super.setScene(new Scene(this.anchorPane));
             super.setResizable(false);
@@ -68,26 +75,6 @@ public class ClientWindow extends Stage implements ClientWindowInterface {
     public void setAnchorPane(AnchorPane anchorPane) {
 
         this.anchorPane = anchorPane;
-
-    }
-
-    /**
-     * This method return value of the property client
-     * @return value of the property client
-     * */
-    public Client getClient() {
-
-        return this.client;
-
-    }
-
-    /**
-     * This method set value of the property client
-     * @param client value of the object Client
-     * */
-    public void setClient(Client client) {
-
-        this.client = client;
 
     }
 

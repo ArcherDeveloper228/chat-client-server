@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import javafx.scene.input.KeyCode;
+
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -90,7 +92,7 @@ public class ConnectWindowController implements ConnectWindowInterface {
         });
 
         // make event for button "Connect"
-        this.buttonConnect.setOnAction(event -> { this.connect(); });
+        this.buttonConnect.setOnAction(event ->  this.connect() );
 
     }
 
@@ -134,21 +136,21 @@ public class ConnectWindowController implements ConnectWindowInterface {
                 // make new object Client
                 client = new Client(clientName, ip, port);
 
-                // perform a test connection
-//                    socket = new Socket(ip, port);
+                // perform connection
+                socket = new Socket(ip, port);
 
                 // close window
                 this.buttonConnect.getScene().getWindow().hide();
 
                 // make and show client window
-                new ClientWindow(client).show();
+                new ClientWindow(client, socket).show();
 
             } catch (IllegalArgumentException e1) {
                 ConnectWindowController.showDialogMessage(ERROR, ERRORS[0]);
                 e1.printStackTrace();
-                //} catch (IOException e2) {
-                //  ConnectWindowController.showDialogMessage(ERROR, ERRORS[1]);
-                //   e2.printStackTrace();
+                } catch (IOException e2) {
+                  ConnectWindowController.showDialogMessage(ERROR, ERRORS[1]);
+                   e2.printStackTrace();
             }
 
         } else ConnectWindowController.showDialogMessage(ERROR, ERRORS[2]);
